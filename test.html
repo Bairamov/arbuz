@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title></title>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-grid.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+    </head>
+    <body>
+        <main>
+            <section class="main-section">
+                <div class="container">
+                    <form id="main-form" class="row" action="/calc.php" method="get">
+                        <div class="col-12 col-lg-6">
+                            <h1 class="page-title">Калькулятор тарифов</h1>
+                            <div class="main-section__options">
+
+                                <label class="custom-select">
+                                    <span class="custom-select__label">Укажите регион передвижения</span>
+                                    <select name="select-region" class="custom-select__select">
+                                        <option value="region-1">Ленинградская область</option>
+                                        <option value="region-2">Московская область</option>
+                                        <option value="region-3">Новосибирская область</option>
+                                    </select>
+                                </label>
+
+                                <label class="custom-select">
+                                    <span class="custom-select__label">Прокачка</span>
+                                    <span class="custom-select__range-value">
+                                        <span class="custom-select__range-value-value">400</span>
+                                        <span class="custom-select__range-value-units">тонн</span>
+                                    </span>
+                                    <input class="custom-select__range slider-progress" name="volume" type="range" min="0" max="1200" oninput="change_custom_range_val(this)" value="400" style="--min:0;--max:1200;--value:400;">
+                                    <div class="custom-select__range-data">
+                                        <span class="custom-select__range-data-val custom-select__range-data-val--min">0 тонн</span>
+                                        <span class="custom-select__range-data-val custom-select__range-data-val--middle">600 тонн</span>
+                                        <span class="custom-select__range-data-val custom-select__range-data-val--max">1200 тонн</span>
+                                    </div>
+                                </label>
+
+                                <div class="fuel-type">
+                                    <label class="fuel-type__btn">
+                                        <input type="radio" name="fuel-type" value="gasoline" checked>
+                                        <span class="fuel-type__btn-label">Бензин</span>
+                                    </label>
+                                    <label class="fuel-type__btn">
+                                        <input type="radio" name="fuel-type" value="gas">
+                                        <span class="fuel-type__btn-label">Газ</span>
+                                    </label>
+                                    <label class="fuel-type__btn">
+                                        <input type="radio" name="fuel-type" value="diesel">
+                                        <span class="fuel-type__btn-label">ДТ</span>
+                                    </label>
+                                </div>
+
+                                <div class="input-circles-block">
+                                    <span class="input-circles-block__title">Укажите любимый бренд</span>
+                                    <div class="input-circles-block__btns">
+
+                                        <div class="input-circles-block__btn" style="--active-bg-color: #FBCE07">
+                                            <input type="radio" name="brand" value="shell" disabled>
+                                            <div class="input-circles-block__btn-circle">
+                                                <img class="input-circles-block__btn-img" src="icons/shell.svg">
+                                            </div>
+                                            <span class="input-circles-block__btn-label">Shell</span>
+                                        </div>
+
+                                        <div class="input-circles-block__btn" style="--active-bg-color: #2a6eb8">
+                                            <input type="radio" name="brand" value="gazprom" disabled>
+                                            <div class="input-circles-block__btn-circle">
+                                                <img class="input-circles-block__btn-img" src="icons/gazprom.svg">
+                                            </div>
+                                            <span class="input-circles-block__btn-label">Газпром</span>
+                                        </div>
+
+                                        <div class="input-circles-block__btn" style="--active-bg-color: #f5f5f5">
+                                            <input type="radio" name="brand" value="rosneft" checked>
+                                            <div class="input-circles-block__btn-circle">
+                                                <img class="input-circles-block__btn-img" src="icons/rosneft.svg">
+                                            </div>
+                                            <span class="input-circles-block__btn-label">Роснефть</span>
+                                        </div>
+
+                                        <div class="input-circles-block__btn" style="--active-bg-color: #f5f5f5">
+                                            <input type="radio" name="brand" value="tatneft">
+                                            <div class="input-circles-block__btn-circle">
+                                                <img class="input-circles-block__btn-img" src="icons/tatneft.svg">
+                                            </div>
+                                            <span class="input-circles-block__btn-label">Татнефть</span>
+                                        </div>
+
+                                        <div class="input-circles-block__btn" style="--active-bg-color: #DB2B36">
+                                            <input type="radio" name="brand" value="lukoil">
+                                            <div class="input-circles-block__btn-circle">
+                                                <img class="input-circles-block__btn-img" src="icons/lukoil.svg">
+                                            </div>
+                                            <span class="input-circles-block__btn-label">Лукойл</span>
+                                        </div>
+
+                                        <div class="input-circles-block__btn" style="--active-bg-color: #f5f5f5">
+                                            <input type="radio" name="brand" value="bashneft" disabled>
+                                            <div class="input-circles-block__btn-circle">
+                                                <img class="input-circles-block__btn-img" src="img/bashneft.png">
+                                            </div>
+                                            <span class="input-circles-block__btn-label">Башнефть</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="input-circles-block">
+                                    <span class="input-circles-block__title">Дополнительные услуги</span>
+                                    <div class="input-circles-block__btns input-circles-block__btns--additional-services">
+
+                                        <div class="input-circles-block__btn" style="--active-bg-color: #0079C2">
+                                            <input type="checkbox" name="additional_service[]" value="1">
+                                            <div class="input-circles-block__btn-circle">
+                                                <svg class="input-circles-block__btn-img" width="40" height="34" viewBox="0 0 40 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M19 13.7078H21C25.6944 13.7078 29.5 17.5133 29.5 22.2078V31.7078H10.5V22.2078L10.5107 21.7703C10.7384 17.2792 14.4523 13.7078 19 13.7078Z" stroke="#fff" stroke-width="3"/>
+                                                    <path d="M2 7.86401L6 11.864" stroke="#fff" stroke-width="3"/>
+                                                    <path d="M38 7.86401L34 11.864" stroke="#fff" stroke-width="3"/>
+                                                    <path d="M20 0.207764V5.86462" stroke="#fff" stroke-width="3"/>
+                                                </svg>
+                                            </div>
+                                            <span class="input-circles-block__btn-label">Штрафы</span>
+                                        </div>
+
+                                        <div class="input-circles-block__btn" style="--active-bg-color: #2a6eb8">
+                                            <input type="checkbox" name="additional_service[]" value="2">
+                                            <div class="input-circles-block__btn-circle">
+                                                <svg class="input-circles-block__btn-img" width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <rect x="1.75" y="1.70776" width="29" height="29" rx="5.5" stroke="white" stroke-width="3"/>
+                                                    <line x1="12.5" y1="10.2078" x2="12.5" y2="24.2078" stroke="white" stroke-width="3"/>
+                                                    <rect x="12.5" y="11.7078" width="8" height="6" rx="1.5" stroke="white" stroke-width="3"/>
+                                                </svg>
+                                            </div>
+                                            <span class="input-circles-block__btn-label">Парковки</span>
+                                        </div>
+
+                                        <div class="input-circles-block__btn" style="--active-bg-color: #2a6eb8">
+                                            <input type="checkbox" name="additional_service[]" value="3">
+                                            <div class="input-circles-block__btn-circle">
+                                                <svg class="input-circles-block__btn-img" width="28" height="33" viewBox="0 0 28 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M20.3457 1.70776L26 7.79663V30.7078H2V1.70776H20.3457Z" stroke="#fff" stroke-width="3"/>
+                                                    <line x1="21" y1="14.7078" x2="7" y2="14.7078" stroke="#fff" stroke-width="3"/>
+                                                    <line x1="21" y1="20.7078" x2="7" y2="20.7078" stroke="#fff" stroke-width="3"/>
+                                                </svg>
+                                            </div>
+                                            <span class="input-circles-block__btn-label">ЭДО</span>
+                                        </div>
+
+                                        <div class="input-circles-block__btn" style="--active-bg-color: #5FADE0">
+                                            <input type="checkbox" name="additional_service[]" value="4">
+                                            <div class="input-circles-block__btn-circle">
+                                                <svg class="input-circles-block__btn-img" width="28" height="35" viewBox="0 0 28 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M26.5 20.012C26.5 14.7982 23.3455 10.2425 19.9443 6.87329C18.266 5.21071 16.5822 3.89187 15.3164 2.98853C14.7948 2.61628 14.3446 2.31875 14 2.09595C13.6554 2.31875 13.2052 2.61628 12.6836 2.98853C11.4178 3.89187 9.73402 5.21071 8.05566 6.87329C4.65446 10.2425 1.5 14.7982 1.5 20.012C1.50019 27.1215 7.12792 32.8274 14 32.8274C20.7648 32.8274 26.3239 27.2983 26.4961 20.344L26.5 20.012Z" stroke="white" stroke-width="3"/>
+                                                </svg>
+                                            </div>
+                                            <span class="input-circles-block__btn-label">Мойки</span>
+                                        </div>
+
+                                        <div class="input-circles-block__btn" style="--active-bg-color: #2a6eb8">
+                                            <input type="checkbox" name="additional_service[]" value="5">
+                                            <div class="input-circles-block__btn-circle">
+                                                <svg class="input-circles-block__btn-img" width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <circle cx="15" cy="15.2078" r="13.5" stroke="#fff" stroke-width="3"/>
+                                                    <line x1="23" y1="14.7078" x2="14" y2="14.7078" stroke="#fff" stroke-width="3"/>
+                                                    <line x1="15.5" y1="7.20776" x2="15.5" y2="16.2078" stroke="#fff" stroke-width="3"/>
+                                                </svg>
+                                            </div>
+                                            <span class="input-circles-block__btn-label">Отсрочка</span>
+                                        </div>
+
+                                        <div class="input-circles-block__btn" style="--active-bg-color: #2a6eb8">
+                                            <input type="checkbox" name="additional_service[]" value="6">
+                                            <div class="input-circles-block__btn-circle">
+                                                <svg class="input-circles-block__btn-img" width="35" height="32" viewBox="0 0 35 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <circle cx="26.2499" cy="8.20776" r="6.5" stroke="#fff" stroke-width="3"/>
+                                                    <path d="M31.5 12.2078L12.01 30.435" stroke="#fff" stroke-width="3"/>
+                                                    <line x1="25.9235" y1="1.64011" x2="0.445808" y2="9.57022" stroke="#fff" stroke-width="3"/>
+                                                    <path d="M20.9854 11.5151L8 18.7078" stroke="#fff" stroke-width="3"/>
+                                                </svg>
+                                            </div>
+                                            <span class="input-circles-block__btn-label">Телематика</span>
+                                        </div>
+
+                                        <div class="input-circles-block__btn" style="--active-bg-color: #2a6eb8">
+                                            <input type="checkbox" name="additional_service[]" value="7">
+                                            <div class="input-circles-block__btn-circle">
+                                                <svg class="input-circles-block__btn-img" width="33" height="25" viewBox="0 0 33 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <line x1="1.5" y1="0.207764" x2="1.5" y2="24.2078" stroke="#fff" stroke-width="3"/>
+                                                    <line x1="25.5" y1="0.207764" x2="25.5" y2="24.2078" stroke="#fff" stroke-width="3"/>
+                                                    <line x1="31.5" y1="0.207764" x2="31.5" y2="24.2078" stroke="#fff" stroke-width="3"/>
+                                                    <line x1="7.5" y1="0.207764" x2="7.5" y2="19.2078" stroke="#fff" stroke-width="3"/>
+                                                    <line x1="19.5" y1="0.207764" x2="19.5" y2="19.2078" stroke="#fff" stroke-width="3"/>
+                                                    <line x1="13.5" y1="0.207764" x2="13.5" y2="19.2078" stroke="#fff" stroke-width="3"/>
+                                                </svg>
+                                            </div>
+                                            <span class="input-circles-block__btn-label">PPRPAY</span>
+                                        </div>
+
+                                        <div class="input-circles-block__btn" style="--active-bg-color: #07DE44">
+                                            <input type="checkbox" name="additional_service[]" value="8">
+                                            <div class="input-circles-block__btn-circle">
+                                                <svg class="input-circles-block__btn-img" width="33" height="37" viewBox="0 0 33 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M30.75 1.70776V26.7078H19C18.702 26.7078 18.4121 26.797 18.166 26.9617L18.0625 27.0369L10.5 33.0867V28.2078C10.5 27.3793 9.82843 26.7078 9 26.7078H1.75V1.70776H30.75Z" stroke="white" stroke-width="3" stroke-linejoin="round"/>
+                                                </svg>
+                                            </div>
+                                            <span class="input-circles-block__btn-label">СМС</span>
+                                        </div>
+
+                                        <div class="input-circles-block__btn" style="--active-bg-color: #2a6eb8">
+                                            <input type="checkbox" name="additional_service[]" value="9">
+                                            <div class="input-circles-block__btn-circle">
+                                                <svg class="input-circles-block__btn-img" width="27" height="35" viewBox="0 0 27 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M25.5 5.67554V17.1824C25.5 19.8663 24.8074 22.5478 23.5039 24.8572C22.1964 27.1735 20.2685 29.1669 17.9844 30.5398L17.9814 30.5408L13.5 33.2468L9.01855 30.5408L9.01562 30.5398L8.59082 30.2742C6.48697 28.9161 4.72132 27.0616 3.50098 24.866C2.19013 22.5074 1.50001 19.8611 1.5 17.1824V5.67554L13.5 1.58472L25.5 5.67554Z" stroke="#fff" stroke-width="3"/>
+                                                </svg>
+                                            </div>
+                                            <span class="input-circles-block__btn-label">Страховка</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="rate-block">
+                                <div class="rate-block__top">
+                                    <div class="rate-block__top-title">Подходящий тариф</div>
+                                    <div class="rate-block__top-selected-rate">Премиум</div>
+                                </div>
+                                <img class="card" src="img/card.png">
+                                <div class="gas-stations-on-map">
+                                    <a href="#" class="gas-stations-on-map-link"><span>Сеть АЗС на карте</span></a>
+                                </div>
+                                <hr/>
+                                <div class="promo">
+                                    <span class="promo__title">Выберите промо-акцию:</span>
+                                    <div class="promo__list">
+                                        <label class="promo__list-item">
+                                            <input type="radio" name="promo" value="50">
+                                            <span class="promo__list-item-circle"><span class="promo__list-item-circle-text">50%</span></span>
+                                            <span class="promo__list-item-label">Экономии<br>на штрафах</span>
+                                        </label>
+                                        <label class="promo__list-item">
+                                            <input type="radio" name="promo" value="20">
+                                            <span class="promo__list-item-circle"><span class="promo__list-item-circle-text">20%</span></span>
+                                            <span class="promo__list-item-label">Возврат<br>НДС</span>
+                                        </label>
+                                        <label class="promo__list-item">
+                                            <input type="radio" name="promo" value="5">
+                                            <span class="promo__list-item-circle"><span class="promo__list-item-circle-text">5%</span></span>
+                                            <span class="promo__list-item-label">Скидка<br>на мойку</span>
+                                        </label>
+                                        <label class="promo__list-item">
+                                            <input type="radio" name="promo" value="2">
+                                            <span class="promo__list-item-circle"><span class="promo__list-item-circle-text">2%</span></span>
+                                            <span class="promo__list-item-label">Скидка<br>на топливо</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="rate-block-total">
+                                    <div class="rate-block-total__top">
+                                        <div class="rate-block-total__top-title">Ваша экономия:</div>
+                                        <div class="rate-block-total__top-block rate-block-total__top-block--year">
+                                            <span class="rate-block-total__top-subtitle">экономия в год</span>
+                                            <span class="rate-block-total__top-year-price">
+                                                <span>от </span>
+                                                <span class="rate-block-total__top-year-price-number">72 млн</span>
+                                                <span> ₽</span>
+                                            </span>
+                                        </div>
+                                        <div class="rate-block-total__top-block rate-block-total__top-block--month">
+                                            <span class="rate-block-total__top-subtitle">экономия в месяц</span>
+                                            <span class="rate-block-total__top-year-price">
+                                                <span>от </span>
+                                                <span class="rate-block-total__top-month-price-number">6 002 400</span>
+                                                <span> ₽</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <a href="#" class="open-popup">
+                                        <span>Заказать тариф «<span class="open-popup__rate-name">Премиум</span>»
+                                            <svg class="open-popup__arrow" width="21" height="11" viewBox="0 0 21 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M1 5.5H20H1ZM20 5.5L15.4583 1L20 5.5ZM20 5.5L15.4583 10L20 5.5Z" fill="black"/>
+                                                <path d="M20 5.5L15.4583 10M1 5.5H20H1ZM20 5.5L15.4583 1L20 5.5Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="popup" class="popup-bg">
+                            <div class="popup__container">
+                                <div class="popup__block">
+                                    <div class="popup__close"></div>
+                                    <div class="popup__content">
+                                        <h2 class="popup__title">Заказать тариф «<span class="popup__rate-name">Премиум</span>»</h2>
+                                        <input class="popup__input" placeholder="Номер ИНН" type="text" name="INN">
+                                        <input class="popup__input" placeholder="Телефон для связи" type="text" name="phone">
+                                        <input class="popup__input" placeholder="E-mail для связи" type="email" name="email">
+                                        <label class="agree-checkbox">
+                                            <input type="checkbox" name="agree">
+                                            <span class="agree-heckbox__checkbox"></span>
+                                            <span class="agree-heckbox__label">Согласен с обработкой персональных данных</span>
+                                        </label>
+                                        <button type="submit" name="submit" class="popup-btn">Заказать тариф «<span class="popup-btn__rate-name">Премиум</span>»</button>
+                                        <div class="popup__message"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </main>
+        <script src="js/script.js"></script>
+    </body>
+</html>
